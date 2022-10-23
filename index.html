@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Library</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="./script.js" defer></script>
+	</head>
+	<body>
+		<nav>
+			<h1>Book Library</h1>
+		</nav>
+		<div class="grid-container"></div>
+
+		<dialog class="modal">
+			<form autocomplete="off" id="addBook" class="add-book" method="dialog">
+				<h2>Add new book</h2>
+				<input
+					required
+					placeholder="Title"
+					name="title"
+					id="title"
+					type="text"
+				/>
+				<input
+					required
+					placeholder="Author"
+					name="author"
+					id="author"
+					type="text"
+				/>
+				<input
+					required
+					placeholder="Pages"
+					name="pages"
+					id="pages"
+					type="number"
+				/>
+				<div class="checkbox-wrapper">
+					<label for="checkbox">Have you read it?</label>
+					<input type="checkbox" name="checkbox" id="checkbox" />
+				</div>
+
+				<button type="submit">Add Book</button>
+			</form>
+		</dialog>
+		<button class="open-button">+</button>
+	</body>
+</html>
