@@ -4,17 +4,12 @@ const modal = document.querySelector('.modal')
 const gridContainer = document.querySelector('.grid-container')
 let myLibrary = []
 
-function Book(title, author, pages, haveRead) {
-	this.title = title
-	this.author = author
-	this.pages = pages
-	this.haveRead = haveRead
-}
-
-function addBookToLibrary() {
-	const book = new Book(title, author, pages, haveRead)
-	myLibrary.push(book)
-}
+const createBook = (title, author, pages, haveRead) => ({
+	title,
+	author,
+	pages,
+	haveRead,
+})
 
 function addBookCard() {
 	gridContainer.innerHTML = ''
@@ -46,7 +41,7 @@ function addBookCard() {
 	})
 }
 
-function changeReadStatus(index, readButton) {
+const changeReadStatus = (index, readButton) => {
 	readButton.addEventListener('click', e => {
 		myLibrary[index].haveRead = !myLibrary[index].haveRead
 		if (myLibrary[index].haveRead) {
@@ -68,34 +63,27 @@ function removeBook(index, removeButton) {
 	})
 }
 
-function deleteBook() {}
-
 addBook.addEventListener('submit', e => {
 	modal.close()
 	e.preventDefault()
-	const title = e.target.elements.title
-	const author = e.target.elements.author
-	const pages = e.target.elements.pages
-	const haveRead = e.target.elements.checkbox
-	const book = new Book(
-		title.value,
-		author.value,
-		pages.value,
-		haveRead.checked
-	)
+	let title = e.target.elements.title.value
+	let author = e.target.elements.author.value
+	let pages = e.target.elements.pages.value
+	let haveRead = e.target.elements.checkbox.checked
+	const book = createBook(title, author, pages, haveRead)
 	myLibrary.push(book)
 	addBookCard(book)
-	title.value = ''
-	author.value = ''
-	pages.value = ''
-	haveRead.value = false
+	title = ''
+	author = ''
+	pages = ''
+	haveRead = false
 })
 
 openButton.addEventListener('click', e => {
 	modal.showModal()
 })
 
-window.addEventListener('click', e => {
+modal.addEventListener('click', e => {
 	if (e.target.tagName !== 'DIALOG') return
 	const rect = e.target.getBoundingClientRect()
 
